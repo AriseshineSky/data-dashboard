@@ -18,29 +18,29 @@ export default function Dashboard() {
 	};
 
 	return (
-	<div className="p-8">
-		<h1 className="text-2xl font-bold mb-4"> Dashboard </h1>
-		<div className="flex items-center mb-4">
-			<input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search..." className="border p-2 rounded mr-2 w-full" />
-			<button onClick={handleSearch} className="bg-blue-500 text-white px-4 py-2">
-				search
-			</button>
+		<div className="p-8">
+			<h1 className="mb-4 text-2xl font-bold"> Dashboard </h1>
+			<div className="mb-4 flex items-center">
+				<input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search..." className="mr-2 w-full rounded border p-2" />
+				<button onClick={handleSearch} className="bg-blue-500 px-4 py-2 text-white">
+					search
+				</button>
+			</div>
+			<div className="mb-4">
+				<p>Total products in ebay_us_products: {count !== null ? count : 'Loading...'}</p>
+			</div>
+			<div className="grid grid-cols-1 gap-4">
+				{data.length > 0 ? (
+					data.map((item, index) => (
+						<div key={index} className="rounded border p-4">
+							<h2 className="font-semibold">{item._source.name}</h2>
+							<p>{item._source.description}</p>
+						</div>
+					))
+				) : (
+					<p>No data found</p>
+				)}
+			</div>
 		</div>
-		<div className="mb-4">
-			<p>Total products in ebay_us_products: {count !== null ? count : 'Loading...'}</p>
-		</div>
-		<div className="grid grid-cols-1 gap-4">
-			{data.length > 0 ? (
-				data.map((item, index) => (
-					<div key={index} className="border p-4 rounded">
-						<h2 className="font-semibold">{item._source.name}</h2>
-						<p>{item._source.description}</p>
-					</div>
-				))
-			) : (
-				<p>No data found</p>
-			)}
-		</div>
-	</div>
 	)
 }
