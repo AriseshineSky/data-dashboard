@@ -14,7 +14,8 @@ interface DashboardItem {
 interface DashboardData {
 	index_name: string;
 	time_frame: string;
-	total_count: number;
+	count: number;
+	status: number;
 	timestamp: number;
 }
 
@@ -47,10 +48,10 @@ const Dashboard = ({ data }: { data: DashboardData[] }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{data.map((item) => (
+							{data.sort((a, b) => a.status - b.status).map((item) => (
 								<tr key={item.time_frame}>
 									<td>{item.time_frame}</td>
-									<td>{item.total_count}</td>
+									<td>{item.count}</td>
 									<td>{item.timestamp}</td>
 								</tr>
 							))}
