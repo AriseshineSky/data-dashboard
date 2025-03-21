@@ -63,8 +63,9 @@ const Dashboard = ({ data }: { data: DashboardData[] }) => {
 	);
 };
 
+const API_BASE_URL = process.env.DATA_API_BASE_URL
 export async function getServerSideProps() {
-	const res = await axios.get('http://localhost:8000/api/dashboard-analysis/');
+	const res = await axios.get(`${API_BASE_URL}/dashboard-analysis`);
 	const data: DashboardItem[] = res.data;
 
 	return {
