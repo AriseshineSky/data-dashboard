@@ -8,6 +8,7 @@ type ReconciliationRecord = {
 	check_date: string;
 	site_product_count: number;
 	es_product_count: number;
+	valid_price_count: number;
 	created_at: string;
 	updated_at: string;
 }
@@ -32,6 +33,7 @@ export default function ReconciliationPage({ data }: { data: ReconciliationRecor
             <th className="border px-4 py-2">Check Date</th>
             <th className="border px-4 py-2">Site Product Count</th>
             <th className="border px-4 py-2">ES Product Count</th>
+            <th className="border px-4 py-2">Invalid Price Count</th>
             <th className="border px-4 py-2">Missing Products</th>
           </tr>
         </thead>
@@ -44,6 +46,7 @@ export default function ReconciliationPage({ data }: { data: ReconciliationRecor
 								<td className="border px-4 py-2">{record.check_date}</td>
 								<td className="border px-4 py-2">{record.site_product_count}</td>
 								<td className="border px-4 py-2">{record.es_product_count}</td>
+								<td className="border px-4 py-2">{record.site_product_count - record.valid_price_count}</td>
 								<td className="border px-4 py-2">{record.site_product_count - record.es_product_count}</td>
 							</tr>
 						))
